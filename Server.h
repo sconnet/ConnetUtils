@@ -5,14 +5,17 @@
 // Source File Name : Server.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Server.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // File Overview    : Listens for incoming connections and calls a user's
 //                    callback so the user can read the data.
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Server.h,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -28,10 +31,10 @@
 // file descriptor is passed to you, read from it and return false if
 // client disconnects or cannot read from file descriptor, or return
 // true if the read was successful
-typedef bool (*Callback)(int, void*);
+typedef bool (*Callback)(int fd, void* data = 0);
 
-namespace ConnetUtils
-{
+//namespace ConnetUtils
+//{
 
 class Server
 {
@@ -46,16 +49,15 @@ class Server
   Mutex mutex;
 
  public:
-  explicit Server(int port = 0, Callback fn = 0, void* data = 0);
+  Server();
   ~Server();
 
   // use default args to use values passed to constructor
   int listen(int port = 0, Callback fn = 0, void* data = 0) throw (Exception);
   int select() throw (Exception);
   void quit();
-  void setCallback(Callback fn, void* data);
 };
 
-}
+//}
 
 #endif // __SERVER_H_

@@ -5,11 +5,14 @@
 // Source File Name : UUID.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: UUID.cpp,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: UUID.cpp,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -20,7 +23,7 @@
 #include "UUID.h"
 
 using namespace std;
-using namespace ConnetUtils;
+//using namespace ConnetUtils;
 
 // initialize class variable
 struct in_addr UUID::ia = { 0 };
@@ -33,7 +36,8 @@ struct in_addr UUID::ia = { 0 };
 // 
 //-------------------------------------------------------------------------
 //
-ostream& ConnetUtils::operator<<(ostream& out, const UUID& uuid)
+//ostream& ConnetUtils::operator<<(ostream& out, const UUID& uuid)
+ostream& operator<<(ostream& out, const UUID& uuid)
 {
   out << uuid.ia.s_addr << uuid.tv.tv_sec << uuid.tv.tv_usec;
   return out;
@@ -47,7 +51,8 @@ ostream& ConnetUtils::operator<<(ostream& out, const UUID& uuid)
 // 
 //-------------------------------------------------------------------------
 //
-bool ConnetUtils::operator<(const UUID& lhs, const UUID& rhs)
+//bool ConnetUtils::operator<(const UUID& lhs, const UUID& rhs)
+bool operator<(const UUID& lhs, const UUID& rhs)
 {
   return
     lhs.tv.tv_usec < rhs.tv.tv_usec &&
@@ -63,7 +68,8 @@ bool ConnetUtils::operator<(const UUID& lhs, const UUID& rhs)
 // 
 //-------------------------------------------------------------------------
 //
-bool ConnetUtils::operator==(const UUID& lhs, const UUID& rhs)
+//bool ConnetUtils::operator==(const UUID& lhs, const UUID& rhs)
+bool operator==(const UUID& lhs, const UUID& rhs)
 {
   return
     lhs.tv.tv_usec == rhs.tv.tv_usec &&
@@ -79,7 +85,8 @@ bool ConnetUtils::operator==(const UUID& lhs, const UUID& rhs)
 // 
 //-------------------------------------------------------------------------
 //
-bool ConnetUtils::operator!=(const UUID& lhs, const UUID& rhs)
+//bool ConnetUtils::operator!=(const UUID& lhs, const UUID& rhs)
+bool operator!=(const UUID& lhs, const UUID& rhs)
 {
   return !(lhs == rhs);
 }

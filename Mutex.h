@@ -5,13 +5,16 @@
 // Source File Name : Mutex.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Mutex.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // File Overview    : class for single locking mechanism and condition
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Mutex.h,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -23,8 +26,8 @@
 #include <sys/time.h>
 #include <pthread.h>
 
-namespace ConnetUtils
-{
+//namespace ConnetUtils
+//{
 
 class Mutex
 {
@@ -48,5 +51,6 @@ class Mutex
   pthread_cond_t cond;
 };
 
-} 
+//}
+
 #endif // __MUTEX_H_

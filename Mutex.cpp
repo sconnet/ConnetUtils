@@ -5,11 +5,14 @@
 // Source File Name : Mutex.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Mutex.cpp,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Mutex.cpp,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -20,7 +23,7 @@
 #include "misc.h"
 #include "Mutex.h"
 
-using namespace ConnetUtils;
+//using namespace ConnetUtils;
 
 //
 //-------------------------------------------------------------------------

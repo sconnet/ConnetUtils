@@ -5,7 +5,7 @@
 // Source File Name : Config.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Config.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // File Overview    : Reads in the configuration file once and puts
 //                    each name value pair into a map for quick
@@ -13,7 +13,10 @@
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Config.h,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -26,8 +29,8 @@
 #include <string>
 #include <iostream>
 
-namespace ConnetUtils
-{
+//namespace ConnetUtils
+//{
 
 class Config
 {
@@ -52,7 +55,7 @@ class Config
 
 };
 
-}
+//}
 
 #endif // __CONFIG_H_
 

@@ -5,13 +5,16 @@
 // Source File Name : TriggerQueue.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: TriggerQueue.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // File Overview    : queue template with auto trigger on push
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: TriggerQueue.h,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -21,8 +24,8 @@
 #include <cerrno>
 #include <queue>
 
-namespace ConnetUtils
-{
+//namespace ConnetUtils
+//{
   
 template<class T>
 class TriggerQueue
@@ -96,5 +99,7 @@ class TriggerQueue
       return !bEmpty;
     }
 };
+
+//}
 
 #endif // __TRIGGER_QUEUE_H_

@@ -5,18 +5,21 @@
 // Source File Name : misc.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: misc.cpp,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: misc.cpp,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
 #include "misc.h"
 
 using namespace std;
-using namespace ConnetUtils;
+//using namespace ConnetUtils;
 
 //
 //-------------------------------------------------------------------------

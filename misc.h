@@ -5,15 +5,20 @@
 // Source File Name : misc.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: misc.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // File Overview    : miscellaneous utility functions
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: misc.h,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
+
+#pragma interface
 
 #ifndef __MISC_H_
 #define __MISC_H_
@@ -21,13 +26,13 @@
 #include <sys/time.h>
 #include <string>
 
-namespace ConnetUtils
-{
+//namespace ConnetUtils
+//{
 
 std::string trimLeft(const std::string& value);
 std::string trimRight(const std::string& value);
 void makeTimespec(int timeout /* ms */, struct timespec& ts);
 
-}
+//}
 
 #endif // __MISC_H_

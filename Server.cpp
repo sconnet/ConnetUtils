@@ -5,11 +5,14 @@
 // Source File Name : Server.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Server.cpp,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Server.cpp,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -29,22 +32,22 @@
 #include "Server.h"
 
 using namespace std;
-using namespace ConnetUtils;
+//using namespace ConnetUtils;
 
 //
 //-------------------------------------------------------------------------
 // Method         : constructor
 //
-// Implementation : overrides default port
+// Implementation : default constructor
 // 
 //-------------------------------------------------------------------------
 //
-Server::Server(int port = 0, Callback fn = 0, void* data = 0) :
+Server::Server() :
   fd(-1),
-  port(port),
+  port(-1),
   listening(false),
-  callbackFn(fn),
-  callbackData(data)
+  callbackFn(NULL),
+  callbackData(NULL)
 {
 } // constructor
 
@@ -65,39 +68,21 @@ Server::~Server()
 
 //
 //-------------------------------------------------------------------------
-// Method         : setCallback
-//
-// Implementation : Stores the user's callback and private data
-// 
-//-------------------------------------------------------------------------
-//
-void Server::setCallback(Callback fn, void* data)
-{
-  callbackFn = fn;
-  callbackData = data;
-
-} // setCallback
-
-//
-//-------------------------------------------------------------------------
 // Method         : listen
 //
 // Implementation : Starts listening for connections.
 // 
 //-------------------------------------------------------------------------
 //
-int Server::listen(int port = 0, Callback fn = 0, void* data = 0) throw (Exception)
+int Server::listen(int port, Callback fn, void* data = 0) throw (Exception)
 {
   if (listening)
     return 0;
   
   // override port or callback
-  if (port)
-    this->port = port;
-  if (fn)
-    callbackFn = fn;
-  if (data)
-    callbackData = data;
+  this->port = port;
+  callbackFn = fn;
+  callbackData = data;
 
   // create our listening socket
   if ( (fd = socket (AF_INET, SOCK_STREAM, 0)) == -1 )
@@ -177,10 +162,11 @@ int Server::select() throw (Exception)
         FD_CLR(client_fd, &read_set);
 
         // call user's callback fn
-        if (!callbackFn(client_fd, callbackData))
+        if( !callbackFn(client_fd, callbackData) )
         {
           shutdown (client_fd, SHUT_RDWR);
           close (client_fd);
+          //          client.erase( remove(client.begin(), client.end(), client_fd), client.end() );
           cur = client.erase (cur);
           cerr << "-- client disconnected fd " << client_fd << endl;
         }

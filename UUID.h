@@ -5,13 +5,16 @@
 // Source File Name : UUID.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: UUID.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // Revision History : Creates a unique identifier
 //                    Not gauranteed unique if created faster than
 //                    once every microsecond
 //
-// $Log: $
+// $Log: UUID.h,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -26,8 +29,8 @@
 #include <iostream>
 #include <string>
 
-namespace ConnetUtils
-{
+//namespace ConnetUtils
+//{
 
 class UUID
 {
@@ -45,6 +48,6 @@ class UUID
   friend bool operator!=(const UUID& lhs, const UUID& rhs);  
 };
 
-}
+//}
 
 #endif // __UUID_H_

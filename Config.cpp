@@ -5,11 +5,14 @@
 // Source File Name : Config.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Config.cpp,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Config.cpp,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -24,7 +27,7 @@
 #include "Config.h"
 
 using namespace std;
-using namespace ConnetUtils;
+//using namespace ConnetUtils;
 
 //
 //-------------------------------------------------------------------------
@@ -34,7 +37,8 @@ using namespace ConnetUtils;
 // 
 //-------------------------------------------------------------------------
 //
-ostream& ConnetUtils::operator<<(ostream& out, const Config& config)
+//ostream& ConnetUtils::operator<<(ostream& out, const Config& config)
+ostream& operator<<(ostream& out, const Config& config)
 {
   for( map<string, string>::const_iterator cur( config.data.begin() ), last( config.data.end() ); cur != last; ++cur )
     out << cur->first << '=' << cur->second << '\n';

@@ -5,11 +5,14 @@
 // Source File Name : Singleton.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Singleton.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
 //
 // Revision History : Turn a class into a singleton
 //
-// $Log: $
+// $Log: Singleton.h,v $
+// Revision 1.1  2001/11/08 06:17:14  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -18,45 +21,45 @@
 #ifndef __SINGLETON_H_
 #define __SINGLETON_H_
 
-namespace ConnetUtils
-{
-  template <class T>
-    class Singleton 
-    { 
-      Singleton() {}
-      ~Singleton() {}
+//namespace ConnetUtils
+//{
+template <class T>
+class Singleton 
+{ 
+  Singleton() {}
+  ~Singleton() {}
       
-    public: 
-      static T& Instance() 
-        { 
-          static T instance; 
-          return instance; 
-        }
-    };
+ public: 
+  static T& Instance() 
+    { 
+      static T instance; 
+      return instance; 
+    }
+};
 
 #define SINGLETON(T) protected:friend class Singleton<T>; T() {}
 #define SINGLETON_INSTANCE(T) Singleton<T>::Instance() 
 
-  /*
-    example of how to use:
+/*
+  example of how to use:
 
-    class test
-    {
-      SINGLETON(test);
-    public:
-        int a;
-    };
+  class test
+  {
+  SINGLETON(test);
+  public:
+  int a;
+  };
 
-    int main()
-    {
-      test& t = SINGLETON_INSTANCE(test);
-      t.a = 10;
+  int main()
+  {
+  test& t = SINGLETON_INSTANCE(test);
+  t.a = 10;
 
-      test& f = SINGLETON_INSTANCE(test);
-      cout << f.a << endl;
-    }
-  */
-}
+  test& f = SINGLETON_INSTANCE(test);
+  cout << f.a << endl;
+  }
+*/
+//}
 
 #endif // __SINGLETON_H_
 
