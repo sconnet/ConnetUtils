@@ -6,9 +6,25 @@
 #include <iostream>
 #include <unistd.h>
 #include "Server.h"
+#include "Thread.h"
 
 using namespace std;
 //using namespace ConnetUtils;
+
+class ThreadedObject : public Thread
+{
+public:
+  ThreadedObject() {}
+  void run()
+  {
+    for( int x = 0; x < 10; ++x )
+    {
+      cout << x << "/10: hello from the thread" << endl;
+      if( waitForKillEvent( 1000 ) )
+        break;
+    }
+  }
+};
 
 bool read_client(int fd, void* data = 0)
 {
@@ -29,6 +45,8 @@ bool read_client(int fd, void* data = 0)
 
 int main()
 {
+  ThreadedObject thread;
+  thread.start();
   Server server;
 
   try
@@ -40,4 +58,6 @@ int main()
   {
     cout << ex << endl;
   }
+
+  thread.stop();
 }
