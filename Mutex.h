@@ -1,0 +1,52 @@
+//*****************************************************************************
+//
+// Copyright (C) 2001 Steve Connet.  All rights reserved.
+//
+// Source File Name : Mutex.h
+// Author           : Steve Connet
+//
+// Version          : $Id: $
+//
+// File Overview    : class for single locking mechanism and condition
+//
+// Revision History : 
+//
+// $Log: $
+//
+//*****************************************************************************
+
+#pragma interface
+
+#ifndef __MUTEX_H_
+#define __MUTEX_H_
+
+#include <sys/time.h>
+#include <pthread.h>
+
+namespace ConnetUtils
+{
+
+class Mutex
+{
+ public:
+  Mutex();
+  ~Mutex();
+
+  void lock()    { pthread_mutex_lock(&mutex);                }
+  void unlock()  { pthread_mutex_unlock(&mutex);              }
+  bool trylock() { return pthread_mutex_trylock(&mutex) == 0; }
+  void reset()   { event = false;                             }
+  
+  void signal();
+  void broadcast();
+  void waitEvent();
+  bool waitEvent(int timeout /* ms */);
+  
+ private:
+  bool event;
+  pthread_mutex_t mutex;
+  pthread_cond_t cond;
+};
+
+} 
+#endif // __MUTEX_H_
