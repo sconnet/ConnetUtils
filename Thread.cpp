@@ -5,11 +5,14 @@
 // Source File Name : Thread.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: Thread.cpp,v 1.1 2002/01/11 03:41:49 sconnet Exp steve $
+// Version          : $Id: Thread.cpp,v 1.2 2002/01/11 03:44:04 steve Exp steve $
 //
 // Revision History : 
 //
 // $Log: Thread.cpp,v $
+// Revision 1.2  2002/01/11 03:44:04  steve
+// *** empty log message ***
+//
 // Revision 1.1  2002/01/11 03:41:49  sconnet
 // Initial revision
 //
@@ -63,7 +66,7 @@ Thread::~Thread()
 void Thread::Start()
 {
     if(!m_tid)
-        pthread_create(&m_tid, NULL, &_Thread, this);
+        pthread_create(&m_tid, NULL, &_Run, this);
 
 } // Start
 

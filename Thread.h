@@ -5,13 +5,16 @@
 // Source File Name : Thread.h
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Thread.h,v 1.1 2002/01/11 03:41:49 sconnet Exp steve $
 //
 // File Overview    : Base class for threadable object
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Thread.h,v $
+// Revision 1.1  2002/01/11 03:41:49  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
@@ -35,8 +38,8 @@ class Thread
   struct timespec MakeTimespec(int nTimeout);
 
   // pure virtual function must be overridden by subclassed objects
-  virtual void Thread() = 0;
-  static void* _Thread(void* pData) { reinterpret_cast<Thread*>(pData)->Thread(); return 0; }
+  virtual void Run() = 0;
+  static void* _Run(void* pData) { reinterpret_cast<Thread*>(pData)->Run(); return 0; }
   
  public:
   Thread();
