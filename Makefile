@@ -5,11 +5,14 @@
 # Source File Name : makefile
 # Author           : Steve Connet
 #
-# Version          : $Id: Makefile,v 1.1 2001/11/08 06:17:14 sconnet Exp steve $
+# Version          : $Id: Makefile,v 1.2 2002/01/11 03:50:21 steve Exp steve $
 #
 # Revision History : makefile for the ConnetUtils library
 #
 # $Log: Makefile,v $
+# Revision 1.2  2002/01/11 03:50:21  steve
+# *** empty log message ***
+#
 # Revision 1.1  2001/11/08 06:17:14  sconnet
 # Initial revision
 #
@@ -31,7 +34,7 @@ DEBUG = -g -D_DEBUG_ -Wall -I$(STDINCDIR) -L$(STDLIBDIR)
 CFLAGS = $(DEBUG)
 
 OBJS = UUID.o Mutex.o Server.o Config.o misc.o Thread.o
-HDRS = UUID.h Exception.h Singleton.h Mutex.h Server.h Config.h misc.h TriggerQueue.h Thread.h
+HDRS = UUID.h Exception.h Singleton.h Mutex.h Server.h Config.h misc.h TriggerQueue.h Thread.h Stopwatch.h
 
 # build the target
 $(TARGET): $(OBJS)
