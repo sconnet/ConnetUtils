@@ -5,11 +5,14 @@
 // Source File Name : Server.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: Server.cpp,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
+// Version          : $Id: Server.cpp,v 1.2 2002/01/11 03:41:49 sconnet Exp steve $
 //
 // Revision History : 
 //
 // $Log: Server.cpp,v $
+// Revision 1.2  2002/01/11 03:41:49  sconnet
+// *** empty log message ***
+//
 // Revision 1.1  2001/11/08 06:17:14  sconnet
 // Initial revision
 //
@@ -225,3 +228,42 @@ void Server::quit()
   mutex.unlock();
 
 } // quit
+
+//
+//-------------------------------------------------------------------------
+// Method         : int connect
+//
+// Implementation : Connects to a remote host
+//                  returns the connected file descriptor
+//
+//-------------------------------------------------------------------------
+//
+int Server::connect(const string& host, int port) throw(Exception)
+{
+  // get dotted ip from dns given hostname
+  // int gethostbyname_r (const char *, hostent *, char *, unsigned int, hostent**, int *)
+  struct hostent* h = gethostbyname( host.c_str() );
+  if( !h )
+    throw( Exception( "gethostbyname failed, bad host name?", __FILE__, __LINE__ ) );
+
+	// create the socket
+  int fd = socket( AF_INET, SOCK_STREAM, 0 );
+  if( fd == -1 )
+    throw( Exception( "socket failed, returned -1", __FILE__, __LINE__ ) );
+
+  // setup for socket creation
+  struct sockaddr_in sock;
+  sock.sin_family = AF_INET;
+  sock.sin_port = htons( port );
+  memcpy( &sock.sin_addr, h->h_addr, h->h_length );
+
+  // attempt to connect (blocking)
+  if( ( ::connect( fd, (struct sockaddr*)&sock, sizeof(sock) ) ) == -1 )
+  {
+    close( fd );
+    throw( Exception( "connect failed, returned -1", __FILE__, __LINE__ ) );
+  }
+
+  return fd;
+
+} // connect
