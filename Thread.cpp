@@ -5,18 +5,21 @@
 // Source File Name : Thread.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: $
+// Version          : $Id: Thread.cpp,v 1.1 2002/01/11 03:41:49 sconnet Exp steve $
 //
 // Revision History : 
 //
-// $Log: $
+// $Log: Thread.cpp,v $
+// Revision 1.1  2002/01/11 03:41:49  sconnet
+// Initial revision
+//
 //
 //*****************************************************************************
 
 #pragma implementation
 
 #include <sys/time.h>
-#include "thread.h"
+#include "Thread.h"
 
 //
 //-------------------------------------------------------------------------
