@@ -5,13 +5,16 @@
 // Source File Name : Thread.h
 // Author           : Steve Connet
 //
-// Version          : $Id: Thread.h,v 1.1 2002/01/11 03:41:49 sconnet Exp steve $
+// Version          : $Id: Thread.h,v 1.2 2002/01/11 03:45:47 steve Exp steve $
 //
 // File Overview    : Base class for threadable object
 //
 // Revision History : 
 //
 // $Log: Thread.h,v $
+// Revision 1.2  2002/01/11 03:45:47  steve
+// *** empty log message ***
+//
 // Revision 1.1  2002/01/11 03:41:49  sconnet
 // Initial revision
 //
@@ -35,20 +38,20 @@ class Thread
   pthread_mutex_t m_killLock;
   bool m_bKillEventSet;
 
-  struct timespec MakeTimespec(int nTimeout);
+  struct timespec makeTimespec(int nTimeout);
 
   // pure virtual function must be overridden by subclassed objects
-  virtual void Run() = 0;
-  static void* _Run(void* pData) { reinterpret_cast<Thread*>(pData)->Run(); return 0; }
+  virtual void run() = 0;
+  static void* _run(void* pData) { reinterpret_cast<Thread*>(pData)->run(); return 0; }
   
  public:
   Thread();
   virtual ~Thread();
 
-  virtual void Start();
-  virtual void Stop();
-  bool WaitForKillEvent(int nTimeout);
-  pthread_t GetThreadId() { return m_tid; }
+  virtual void start();
+  virtual void stop();
+  bool waitForKillEvent(int nTimeout);
+  pthread_t getThreadId() { return m_tid; }
 };
 
 #endif // __THREAD_H_

@@ -5,11 +5,14 @@
 // Source File Name : Thread.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: Thread.cpp,v 1.2 2002/01/11 03:44:04 steve Exp steve $
+// Version          : $Id: Thread.cpp,v 1.3 2002/01/11 03:45:49 steve Exp steve $
 //
 // Revision History : 
 //
 // $Log: Thread.cpp,v $
+// Revision 1.3  2002/01/11 03:45:49  steve
+// *** empty log message ***
+//
 // Revision 1.2  2002/01/11 03:44:04  steve
 // *** empty log message ***
 //
@@ -57,30 +60,30 @@ Thread::~Thread()
 
 //
 //-------------------------------------------------------------------------
-// Function       : void Thread::Start()
+// Function       : void Thread::start()
 //
 // Implementation : Spawns the thread in the subclassed object
 //
 //-------------------------------------------------------------------------
 //
-void Thread::Start()
+void Thread::start()
 {
     if(!m_tid)
-        pthread_create(&m_tid, NULL, &_Run, this);
+        pthread_create(&m_tid, NULL, &_run, this);
 
-} // Start
+} // start
 
 
 //
 //-------------------------------------------------------------------------
-// Function       : void Thread::Stop()
+// Function       : void Thread::stop()
 //
 // Implementation : Sets the kill event to true and signals the kill 
 //                  signal. It waits for spawned threads to die. 
 //
 //-------------------------------------------------------------------------
 //
-void Thread::Stop()
+void Thread::stop()
 {
     pthread_mutex_lock(&m_killLock);
     m_bKillEventSet = true;
@@ -91,12 +94,12 @@ void Thread::Stop()
     m_tid = 0;
     m_bKillEventSet = false;
 
-} // Stop
+} // stop
 
 
 //
 //-------------------------------------------------------------------------
-// Function       : struct timespec Thread::MakeTimespec(int nTimeout)
+// Function       : struct timespec Thread::makeTimespec(int nTimeout)
 //
 // Implementation : Returns a timespec struct to be used in a
 //                  pthread_cond_timedwait. nTimeout must be in 
@@ -104,7 +107,7 @@ void Thread::Stop()
 //
 //-------------------------------------------------------------------------
 //
-struct timespec Thread::MakeTimespec(int nTimeout)
+struct timespec Thread::makeTimespec(int nTimeout)
 {
     const long billion = 1000000000L;
 
@@ -128,12 +131,12 @@ struct timespec Thread::MakeTimespec(int nTimeout)
 
     return deadline;
 
-} // MakeTimespec
+} // makeTimespec
 
 
 //
 //-------------------------------------------------------------------------
-// Function       : bool Thread::WaitForKillEvent(int nTimeout)
+// Function       : bool Thread::waitForKillEvent(int nTimeout)
 //
 // Implementation : Waits specified timeout period on the kill event.
 //                  nTimeout is in milliseconds. Subclassed objects
@@ -149,19 +152,19 @@ struct timespec Thread::MakeTimespec(int nTimeout)
 //
 //-------------------------------------------------------------------------
 //
-bool Thread::WaitForKillEvent(int nTimeout)
+bool Thread::waitForKillEvent(int nTimeout)
 {
     pthread_mutex_lock(&m_killLock);
 
     bool bKillEventSet = m_bKillEventSet;
     if(!bKillEventSet)
     {
-        struct timespec tm = MakeTimespec(nTimeout);
+        struct timespec tm = makeTimespec(nTimeout);
         pthread_cond_timedwait(&m_killCondition, &m_killLock, &tm);
     }
 
     pthread_mutex_unlock(&m_killLock);
     return bKillEventSet;
 
-} // WaitForKillEvent
+} // waitForKillEvent
 
