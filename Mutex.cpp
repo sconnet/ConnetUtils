@@ -5,11 +5,14 @@
 // Source File Name : Mutex.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: Mutex.cpp,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
+// Version          : $Id: Mutex.cpp,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
 //
-// Revision History : 
+// Revision History :
 //
 // $Log: Mutex.cpp,v $
+// Revision 1.2  2002/01/11 03:41:49  sconnet
+// *** empty log message ***
+//
 // Revision 1.1  2001/11/08 06:17:14  sconnet
 // Initial revision
 //
@@ -30,27 +33,27 @@
 // Method         : constructor
 //
 // Implementation : initialize
-// 
+//
 //-------------------------------------------------------------------------
 //
 Mutex::Mutex() : event(false)
 {
-  pthread_mutex_init(&mutex, NULL);
-  pthread_cond_init(&cond, NULL);
+    pthread_mutex_init(&mutex, NULL);
+    pthread_cond_init(&cond, NULL);
 }
-  
+
 //
 //-------------------------------------------------------------------------
 // Method         : destructor
 //
 // Implementation : clean up
-// 
+//
 //-------------------------------------------------------------------------
 //
 Mutex::~Mutex()
 {
-  pthread_mutex_destroy(&mutex);
-  pthread_cond_destroy(&cond);
+    pthread_mutex_destroy(&mutex);
+    pthread_cond_destroy(&cond);
 }
 
 //
@@ -58,15 +61,15 @@ Mutex::~Mutex()
 // Method         : signal
 //
 // Implementation : signals a thread sitting in a waitEvent
-// 
+//
 //-------------------------------------------------------------------------
 //
 void Mutex::signal()
 {
-  lock();
-  event = true;
-  unlock();
-  pthread_cond_signal(&cond);
+    lock();
+    event = true;
+    unlock();
+    pthread_cond_signal(&cond);
 
 } // signal
 
@@ -75,15 +78,15 @@ void Mutex::signal()
 // Method         : broadcast
 //
 // Implementation : signals all threads sitting in a waitEvent
-// 
+//
 //-------------------------------------------------------------------------
 //
 void Mutex::broadcast()
 {
-  lock();
-  event = true;
-  unlock();
-  pthread_cond_broadcast(&cond);    
+    lock();
+    event = true;
+    unlock();
+    pthread_cond_broadcast(&cond);
 
 } // broadcast
 
@@ -92,19 +95,20 @@ void Mutex::broadcast()
 // Method         : waitEvent
 //
 // Implementation : waits forever until a thread calls signal or broadcast
-// 
+//
 //-------------------------------------------------------------------------
 //
 void Mutex::waitEvent()
 {
-  lock();
-  while(!event)
-    pthread_cond_wait(&cond, &mutex);
-  unlock();
-  event = false; // reset event
+    lock();
+    while(!event) {
+        pthread_cond_wait(&cond, &mutex);
+    }
+    unlock();
+    event = false; // reset event
 
 } // waitEvent
-    
+
 //
 //-------------------------------------------------------------------------
 // Method         : waitEvent(int timeout /* ms */)
@@ -112,29 +116,30 @@ void Mutex::waitEvent()
 // Implementation : waits for specified time period, in milliseconds,
 //                  until a thread calls signal or broadcast
 //                  returns the state of the event
-// 
+//
 //-------------------------------------------------------------------------
 //
 bool Mutex::waitEvent(int timeout /* ms */)
 {
-  lock();
-  bool event_status( event );
-  
-  while(!event)
-  {
-    struct timespec deadline;
-    makeTimespec(timeout, deadline);
-    
-    if (pthread_cond_timedwait(&cond, &mutex, &deadline) == ETIMEDOUT)
-      break;
-    else
+    lock();
+    bool event_status(event);
+
+    while(!event)
     {
-      event = false; // reset event
-      event_status = event;
+        struct timespec deadline;
+        makeTimespec(timeout, deadline);
+
+        if(pthread_cond_timedwait(&cond, &mutex, &deadline) == ETIMEDOUT) {
+            break;
+        }
+        else
+        {
+            event = false; // reset event
+            event_status = event;
+        }
     }
-  }
-  unlock();
-  return event_status;
+    unlock();
+    return event_status;
 
 } // waitEvent
 

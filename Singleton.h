@@ -5,11 +5,14 @@
 // Source File Name : Singleton.h
 // Author           : Steve Connet
 //
-// Version          : $Id: Singleton.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
+// Version          : $Id: Singleton.h,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
 //
 // Revision History : Turn a class into a singleton
 //
 // $Log: Singleton.h,v $
+// Revision 1.2  2002/01/11 03:41:49  sconnet
+// *** empty log message ***
+//
 // Revision 1.1  2001/11/08 06:17:14  sconnet
 // Initial revision
 //
@@ -24,21 +27,21 @@
 //namespace ConnetUtils
 //{
 template <class T>
-class Singleton 
-{ 
-  Singleton() {}
-  ~Singleton() {}
-      
- public: 
-  static T& Instance() 
-    { 
-      static T instance; 
-      return instance; 
+class Singleton
+{
+    Singleton() {}
+    ~Singleton() {}
+
+public:
+    static T &Instance()
+    {
+        static T instance;
+        return instance;
     }
 };
 
 #define SINGLETON(T) protected:friend class Singleton<T>; T() {}
-#define SINGLETON_INSTANCE(T) Singleton<T>::Instance() 
+#define SINGLETON_INSTANCE(T) Singleton<T>::Instance()
 
 /*
   example of how to use:

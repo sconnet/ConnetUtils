@@ -14,50 +14,52 @@ using namespace std;
 class ThreadedObject : public Thread
 {
 public:
-  ThreadedObject() {}
-  void run()
-  {
-    for( int x = 0; x < 10; ++x )
+    ThreadedObject() {}
+    void run()
     {
-      cout << x << "/10: hello from the thread" << endl;
-      if( waitForKillEvent( 1000 ) )
-        break;
+        for(int x = 0; x < 10; ++x)
+        {
+            cout << x << "/10: hello from the thread" << endl;
+            if(waitForKillEvent(1000)) {
+                break;
+            }
+        }
     }
-  }
 };
 
-bool read_client(int fd, void* data = 0)
+bool read_client(int fd, void *data = 0)
 {
-  data = 0;
-  const int buf_size = 8192; // 8k
-  char buf[buf_size + 1];
+    data = 0;
+    const int buf_size = 8192; // 8k
+    char buf[buf_size + 1];
 
-  memset (buf, 0, buf_size);
-  int bytes = read (fd, (char*)buf, buf_size);
-  if (bytes <= 0)
-    return false;
+    memset(buf, 0, buf_size);
+    int bytes = read(fd, (char *)buf, buf_size);
+    if(bytes <= 0) {
+        return false;
+    }
 
-  // write this to a file
-  cout << buf << endl;
+    // write this to a file
+    cout << buf << endl;
 
-  return true;
+    return true;
 }
 
 int main()
 {
-  ThreadedObject thread;
-  thread.start();
-  Server server;
+    ThreadedObject thread;
+    thread.start();
+    Server server;
 
-  try
-  {
-    server.listen(32000, read_client);
-    server.select();
-  }
-  catch(const Exception& ex)
-  {
-    cout << ex << endl;
-  }
+    try
+    {
+        server.listen(32000, read_client);
+        server.select();
+    }
+    catch(const Exception &ex)
+    {
+        cout << ex << endl;
+    }
 
-  thread.stop();
+    thread.stop();
 }

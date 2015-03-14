@@ -5,13 +5,16 @@
 // Source File Name : misc.h
 // Author           : Steve Connet
 //
-// Version          : $Id: misc.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
+// Version          : $Id: misc.h,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
 //
 // File Overview    : miscellaneous utility functions
 //
-// Revision History : 
+// Revision History :
 //
 // $Log: misc.h,v $
+// Revision 1.2  2002/01/11 03:41:49  sconnet
+// *** empty log message ***
+//
 // Revision 1.1  2001/11/08 06:17:14  sconnet
 // Initial revision
 //
@@ -29,9 +32,9 @@
 //namespace ConnetUtils
 //{
 
-std::string trimLeft(const std::string& value);
-std::string trimRight(const std::string& value);
-void makeTimespec(int timeout /* ms */, struct timespec& ts);
+std::string trimLeft(const std::string &value);
+std::string trimRight(const std::string &value);
+void makeTimespec(int timeout /* ms */, struct timespec &ts);
 
 //}
 

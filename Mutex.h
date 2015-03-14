@@ -5,13 +5,16 @@
 // Source File Name : Mutex.h
 // Author           : Steve Connet
 //
-// Version          : $Id: Mutex.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
+// Version          : $Id: Mutex.h,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
 //
 // File Overview    : class for single locking mechanism and condition
 //
-// Revision History : 
+// Revision History :
 //
 // $Log: Mutex.h,v $
+// Revision 1.2  2002/01/11 03:41:49  sconnet
+// *** empty log message ***
+//
 // Revision 1.1  2001/11/08 06:17:14  sconnet
 // Initial revision
 //
@@ -31,24 +34,32 @@
 
 class Mutex
 {
- public:
-  Mutex();
-  ~Mutex();
+public:
+    Mutex();
+    ~Mutex();
 
-  void lock()    { pthread_mutex_lock(&mutex);                }
-  void unlock()  { pthread_mutex_unlock(&mutex);              }
-  bool trylock() { return pthread_mutex_trylock(&mutex) == 0; }
-  void reset()   { event = false;                             }
-  
-  void signal();
-  void broadcast();
-  void waitEvent();
-  bool waitEvent(int timeout /* ms */);
-  
- private:
-  bool event;
-  pthread_mutex_t mutex;
-  pthread_cond_t cond;
+    void lock()    {
+        pthread_mutex_lock(&mutex);
+    }
+    void unlock()  {
+        pthread_mutex_unlock(&mutex);
+    }
+    bool trylock() {
+        return pthread_mutex_trylock(&mutex) == 0;
+    }
+    void reset()   {
+        event = false;
+    }
+
+    void signal();
+    void broadcast();
+    void waitEvent();
+    bool waitEvent(int timeout /* ms */);
+
+private:
+    bool event;
+    pthread_mutex_t mutex;
+    pthread_cond_t cond;
 };
 
 //}

@@ -5,13 +5,16 @@
 // Source File Name : TriggerQueue.h
 // Author           : Steve Connet
 //
-// Version          : $Id: TriggerQueue.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
+// Version          : $Id: TriggerQueue.h,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
 //
 // File Overview    : queue template with auto trigger on push
 //
-// Revision History : 
+// Revision History :
 //
 // $Log: TriggerQueue.h,v $
+// Revision 1.2  2002/01/11 03:41:49  sconnet
+// *** empty log message ***
+//
 // Revision 1.1  2001/11/08 06:17:14  sconnet
 // Initial revision
 //
@@ -26,77 +29,83 @@
 
 //namespace ConnetUtils
 //{
-  
+
 template<class T>
 class TriggerQueue
 {
-  std::queue<T> data_queue;
-  bool trigger;
-  pthread_cond_t cond;
-  pthread_mutex_t mutex;
-  
- public:
-  TriggerQueue::TriggerQueue()
+    std::queue<T> data_queue;
+    bool trigger;
+    pthread_cond_t cond;
+    pthread_mutex_t mutex;
+
+public:
+    TriggerQueue::TriggerQueue()
     {
-      pthread_mutex_init(&mutex, NULL);
-      pthread_cond_init(&cond, NULL);
+        pthread_mutex_init(&mutex, NULL);
+        pthread_cond_init(&cond, NULL);
     }
 
-  TriggerQueue::~TriggerQueue()
+    TriggerQueue::~TriggerQueue()
     {
-      // signal all threads to wake up
-      trigger(true);
-      pthread_mutex_destroy(&mutex);
-      pthread_cond_destroy(&cond);
+        // signal all threads to wake up
+        trigger(true);
+        pthread_mutex_destroy(&mutex);
+        pthread_cond_destroy(&cond);
     }
 
-  void TriggerQueue::waitOnTrigger()
+    void TriggerQueue::waitOnTrigger()
     {
-      pthread_mutex_lock(&mutex);
-  
-      // turn off the trigger if the queue is empty
-      if(data_queue.size() == 0)
-        trigger = false;
-  
-      while(!trigger)
-        pthread_cond_wait(&cond, &mutex);
-  
-      pthread_mutex_unlock(&mutex);
+        pthread_mutex_lock(&mutex);
+
+        // turn off the trigger if the queue is empty
+        if(data_queue.size() == 0) {
+            trigger = false;
+        }
+
+        while(!trigger) {
+            pthread_cond_wait(&cond, &mutex);
+        }
+
+        pthread_mutex_unlock(&mutex);
 
     } // waitOnTrigger
-    
-  void TriggerQueue::trigger(bool all = false)
-    {      
-      // turn the trigger on
-      pthread_mutex_lock(&mutex);
-      trigger = true;
-      pthread_mutex_unlock(&mutex);
-  
-      if(all)
-        pthread_cond_broadcast(&cond); // signal all waiting threads
-      else
-        pthread_cond_signal(&cond); // signal a single waiting thread
+
+    void TriggerQueue::trigger(bool all = false)
+    {
+        // turn the trigger on
+        pthread_mutex_lock(&mutex);
+        trigger = true;
+        pthread_mutex_unlock(&mutex);
+
+        if(all) {
+            pthread_cond_broadcast(&cond);    // signal all waiting threads
+        }
+        else {
+            pthread_cond_signal(&cond);    // signal a single waiting thread
+        }
 
     } // trigger
-  
-  int size() const { return data_queue.size(); }
-  
-  void push(T obj, bool all = false)
-    {
-      data_queue.push( obj );
-      trigger( all );  // true to trigger all waiting threads
+
+    int size() const {
+        return data_queue.size();
     }
-  
-  bool pop_front(T& obj)
+
+    void push(T obj, bool all = false)
     {
-      bool is_empty( (bool)data_queue.empty() );
-      if( !is_empty )
-      {
-        obj = data_queue.front();
-        data_queue.pop();
-      }
-      
-      return !bEmpty;
+        data_queue.push(obj);
+        trigger(all);    // true to trigger all waiting threads
+    }
+
+    bool pop_front(T &obj)
+    {
+        bool is_empty((bool)data_queue.empty());
+        if(!is_empty)
+        {
+            obj = data_queue.front();
+            data_queue.pop();
+        }
+
+        return !bEmpty;
     }
 };
 

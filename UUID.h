@@ -5,13 +5,16 @@
 // Source File Name : UUID.h
 // Author           : Steve Connet
 //
-// Version          : $Id: UUID.h,v 1.1 2001/11/08 06:17:14 sconnet Exp sconnet $
+// Version          : $Id: UUID.h,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
 //
 // Revision History : Creates a unique identifier
 //                    Not gauranteed unique if created faster than
 //                    once every microsecond
 //
 // $Log: UUID.h,v $
+// Revision 1.2  2002/01/11 03:41:49  sconnet
+// *** empty log message ***
+//
 // Revision 1.1  2001/11/08 06:17:14  sconnet
 // Initial revision
 //
@@ -34,18 +37,18 @@
 
 class UUID
 {
- public:
-  static struct in_addr ia;
-  struct timeval tv;
-    
- public:
-  UUID();
-  operator std::string();
-    
-  friend std::ostream& operator<<(std::ostream& out, const UUID& uuid);
-  friend bool operator<(const UUID& lhs, const UUID& rhs);
-  friend bool operator==(const UUID& lhs, const UUID& rhs);
-  friend bool operator!=(const UUID& lhs, const UUID& rhs);  
+public:
+    static struct in_addr ia;
+    struct timeval tv;
+
+public:
+    UUID();
+    operator std::string();
+
+    friend std::ostream &operator<<(std::ostream &out, const UUID &uuid);
+    friend bool operator<(const UUID &lhs, const UUID &rhs);
+    friend bool operator==(const UUID &lhs, const UUID &rhs);
+    friend bool operator!=(const UUID &lhs, const UUID &rhs);
 };
 
 //}

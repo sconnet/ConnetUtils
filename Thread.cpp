@@ -5,11 +5,14 @@
 // Source File Name : Thread.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: Thread.cpp,v 1.3 2002/01/11 03:45:49 steve Exp steve $
+// Version          : $Id: Thread.cpp,v 1.4 2002/01/11 04:02:14 steve Exp clu $
 //
-// Revision History : 
+// Revision History :
 //
 // $Log: Thread.cpp,v $
+// Revision 1.4  2002/01/11 04:02:14  steve
+// made stop, start, and run lowercase
+//
 // Revision 1.3  2002/01/11 03:45:49  steve
 // *** empty log message ***
 //
@@ -36,11 +39,11 @@
 //-------------------------------------------------------------------------
 //
 Thread::Thread() :
-   m_tid(0),
-   m_bKillEventSet(false)
+    m_tid(0),
+    m_bKillEventSet(false)
 {
-  pthread_mutex_init(&m_killLock, NULL);
-  pthread_cond_init(&m_killCondition, NULL);
+    pthread_mutex_init(&m_killLock, NULL);
+    pthread_cond_init(&m_killCondition, NULL);
 }
 
 
@@ -68,8 +71,9 @@ Thread::~Thread()
 //
 void Thread::start()
 {
-    if(!m_tid)
+    if(!m_tid) {
         pthread_create(&m_tid, NULL, &_run, this);
+    }
 
 } // start
 
@@ -78,8 +82,8 @@ void Thread::start()
 //-------------------------------------------------------------------------
 // Function       : void Thread::stop()
 //
-// Implementation : Sets the kill event to true and signals the kill 
-//                  signal. It waits for spawned threads to die. 
+// Implementation : Sets the kill event to true and signals the kill
+//                  signal. It waits for spawned threads to die.
 //
 //-------------------------------------------------------------------------
 //
@@ -102,7 +106,7 @@ void Thread::stop()
 // Function       : struct timespec Thread::makeTimespec(int nTimeout)
 //
 // Implementation : Returns a timespec struct to be used in a
-//                  pthread_cond_timedwait. nTimeout must be in 
+//                  pthread_cond_timedwait. nTimeout must be in
 //                  milliseconds.
 //
 //-------------------------------------------------------------------------
