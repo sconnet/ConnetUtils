@@ -28,7 +28,7 @@
 //
 //*****************************************************************************
 
-#pragma interface
+//#pragma interface
 
 #ifndef __SERVER_H_
 #define __SERVER_H_
@@ -41,7 +41,8 @@
 // file descriptor is passed to you, read from it and return false if
 // client disconnects or cannot read from file descriptor, or return
 // true if the read was successful
-typedef bool (*Callback)(int fd, void *data = 0);
+//typedef bool (*Callback)(int fd, void *data = 0);
+typedef bool (*Callback)(int fd, void *data);
 
 //namespace ConnetUtils
 //{

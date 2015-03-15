@@ -22,7 +22,7 @@
 //
 //*****************************************************************************
 
-#pragma implementation
+//#pragma implementation
 
 #include <sstream>
 #include <netdb.h>
@@ -107,7 +107,7 @@ bool operator!=(const UUID &lhs, const UUID &rhs)
 //
 UUID::UUID()
 {
-    if(ia.s_addr == 0)
+    if(0 == ia.s_addr)
     {
         char host_name[255];
         gethostname(host_name, 255);

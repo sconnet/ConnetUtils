@@ -46,7 +46,7 @@ string trimLeft(const string &value)
 
     // string has no leading space,
     // don't copy its contents (assuming COW strings)
-    if(where == 0) {
+    if(0 == where) {
         return value;
     }
 

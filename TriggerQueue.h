@@ -61,7 +61,7 @@ public:
         pthread_mutex_lock(&mutex);
 
         // turn off the trigger if the queue is empty
-        if(data_queue.size() == 0) {
+        if(0 == data_queue.size()) {
             trigger = false;
         }
 

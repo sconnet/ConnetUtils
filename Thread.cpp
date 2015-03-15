@@ -28,7 +28,7 @@
 //
 //*****************************************************************************
 
-#pragma implementation
+//#pragma implementation
 
 #include <sys/time.h>
 #include "Thread.h"

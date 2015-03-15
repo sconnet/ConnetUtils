@@ -22,7 +22,7 @@
 //
 //*****************************************************************************
 
-#pragma implementation
+//#pragma implementation
 
 #include <cctype>
 #include <sstream>

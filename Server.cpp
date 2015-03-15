@@ -25,7 +25,7 @@
 //
 //*****************************************************************************
 
-#pragma implementation
+//#pragma implementation
 
 #include <netinet/in.h> // sockaddr_in
 #include <sys/socket.h> // AF_INET, shutdown
@@ -83,7 +83,7 @@ Server::~Server()
 //
 //-------------------------------------------------------------------------
 //
-int Server::listen(int port, Callback fn, void *data = 0) throw(Exception)
+int Server::listen(int port, Callback fn, void *data) throw(Exception)
 {
     if(listening) {
         return 0;
@@ -158,7 +158,7 @@ int Server::select() throw(Exception)
         // wait for incoming connection
         if(::select(max_fd + 1, &read_set, NULL, NULL, NULL) <= 0)
         {
-            if(errno == EINTR) { // exit on signal
+            if(EINTR == errno) { // exit on signal
                 break;
             }
             else {
@@ -195,7 +195,7 @@ int Server::select() throw(Exception)
             struct sockaddr_in acceptSock;
             socklen_t len = sizeof(struct sockaddr_in);
             int new_fd = ::accept(fd, (struct sockaddr *)&acceptSock, &len);
-            if(new_fd == -1) {
+            if(-1 == new_fd) {
                 throw(Exception("Accept failed, returned -1", __FILE__, __LINE__));
             }
             else {

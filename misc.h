@@ -24,7 +24,7 @@
 //
 //*****************************************************************************
 
-#pragma interface
+//#pragma interface
 
 #ifndef __MISC_H_
 #define __MISC_H_

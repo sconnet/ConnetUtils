@@ -24,7 +24,7 @@
 //
 //*****************************************************************************
 
-#pragma interface
+//#pragma interface
 
 #ifndef __MUTEX_H_
 #define __MUTEX_H_
@@ -48,7 +48,7 @@ public:
         pthread_mutex_unlock(&mutex);
     }
     bool trylock() {
-        return pthread_mutex_trylock(&mutex) == 0;
+        return (0 == pthread_mutex_trylock(&mutex));
     }
     void reset()   {
         event = false;

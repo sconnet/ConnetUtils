@@ -30,10 +30,12 @@ includedir = ../include
 libdir = ../lib
 
 STDINCDIR = /usr/local/include
-STDLIBDIR = /usr/local/lib
+#STDLIBDIR = /usr/local/lib
 
-RELEASE = -O2 -W -Wall -Werror -I$(STDINCDIR) -L$(STDLIBDIR)
-DEBUG = -g -D_DEBUG_ -Wall -I$(STDINCDIR) -L$(STDLIBDIR)
+#RELEASE = -O2 -W -Wall -Werror -I$(STDINCDIR) -L$(STDLIBDIR)
+#DEBUG = -g -D_DEBUG_ -Wall -I$(STDINCDIR) -L$(STDLIBDIR)
+RELEASE = -O2 -W -Wall -Werror -I$(STDINCDIR)
+DEBUG = -g -D_DEBUG_ -Wall -I$(STDINCDIR)
 CFLAGS = $(DEBUG)
 
 OBJS = UUID.o Mutex.o Server.o Config.o misc.o Thread.o

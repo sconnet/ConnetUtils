@@ -22,7 +22,7 @@
 //
 //*****************************************************************************
 
-#pragma interface
+//#pragma interface
 
 #ifndef __SINGLETON_H_
 #define __SINGLETON_H_

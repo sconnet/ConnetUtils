@@ -22,7 +22,7 @@
 //
 //*****************************************************************************
 
-#pragma implementation
+//#pragma implementation
 
 #include <cerrno>
 
@@ -132,7 +132,7 @@ bool Mutex::waitEvent(int timeout /* ms */)
         struct timespec deadline;
         makeTimespec(timeout, deadline);
 
-        if(pthread_cond_timedwait(&cond, &mutex, &deadline) == ETIMEDOUT) {
+        if(ETIMEDOUT == pthread_cond_timedwait(&cond, &mutex, &deadline)) {
             break;
         }
         else

@@ -24,7 +24,7 @@
 //
 //*****************************************************************************
 
-#pragma interface
+//#pragma interface
 
 #ifndef __UUID_H_
 #define __UUID_H_

@@ -1,7 +1,8 @@
 /*
-
-  g++ -Wall -o server_test server_test.cpp -I/usr/devel/ConnetUtils/include -L/usr/devel/ConnetUtils/lib -lConnetUtils
- */
+**
+** g++ -Wall -o testsuite testsuite.cpp -I../include -L../lib -lConnetUtils 
+**
+*/
 
 #include <iostream>
 #include <unistd.h>
@@ -62,4 +63,5 @@ int main()
     }
 
     thread.stop();
+    return 0;
 }
