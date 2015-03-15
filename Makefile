@@ -26,8 +26,8 @@ SHELL = /bin/sh
 
 TARGET = ConnetUtils
 
-includedir = ../include
-libdir = ../lib
+includedir = include
+libdir = lib
 
 STDINCDIR = /usr/local/include
 #STDLIBDIR = /usr/local/lib
