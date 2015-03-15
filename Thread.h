@@ -5,13 +5,16 @@
 // Source File Name : Thread.h
 // Author           : Steve Connet
 //
-// Version          : $Id: Thread.h,v 1.3 2002/01/11 04:02:25 steve Exp clu $
+// Version          : $Id: Thread.h,v 1.4 2015/03/14 23:44:56 clu Exp $
 //
 // File Overview    : Base class for threadable object
 //
 // Revision History :
 //
 // $Log: Thread.h,v $
+// Revision 1.4  2015/03/14 23:44:56  clu
+// astyle code formatter applied
+//
 // Revision 1.3  2002/01/11 04:02:25  steve
 // made stop, start, and run lowercase
 //

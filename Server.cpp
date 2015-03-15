@@ -5,11 +5,14 @@
 // Source File Name : Server.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: Server.cpp,v 1.3 2002/02/03 03:49:47 steve Exp clu $
+// Version          : $Id: Server.cpp,v 1.4 2015/03/14 23:44:56 clu Exp $
 //
 // Revision History :
 //
 // $Log: Server.cpp,v $
+// Revision 1.4  2015/03/14 23:44:56  clu
+// astyle code formatter applied
+//
 // Revision 1.3  2002/02/03 03:49:47  steve
 // added static connect method
 //

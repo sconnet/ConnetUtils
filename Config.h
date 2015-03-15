@@ -5,7 +5,7 @@
 // Source File Name : Config.h
 // Author           : Steve Connet
 //
-// Version          : $Id: Config.h,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
+// Version          : $Id: Config.h,v 1.3 2015/03/14 23:30:04 clu Exp $
 //
 // File Overview    : Reads in the configuration file once and puts
 //                    each name value pair into a map for quick
@@ -14,6 +14,9 @@
 // Revision History :
 //
 // $Log: Config.h,v $
+// Revision 1.3  2015/03/14 23:30:04  clu
+// astyle code formatter applied
+//
 // Revision 1.2  2002/01/11 03:41:49  sconnet
 // *** empty log message ***
 //

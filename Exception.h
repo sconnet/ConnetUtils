@@ -5,11 +5,14 @@
 // Source File Name : Exception.h
 // Author           : Steve Connet
 //
-// Version          : $Id: Exception.h,v 1.2 2002/01/11 03:41:49 sconnet Exp clu $
+// Version          : $Id: Exception.h,v 1.3 2015/03/14 23:44:56 clu Exp $
 //
 // Revision History : Throw this when throwing exceptions
 //
 // $Log: Exception.h,v $
+// Revision 1.3  2015/03/14 23:44:56  clu
+// astyle code formatter applied
+//
 // Revision 1.2  2002/01/11 03:41:49  sconnet
 // *** empty log message ***
 //

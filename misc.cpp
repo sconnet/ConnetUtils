@@ -5,11 +5,14 @@
 // Source File Name : misc.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: misc.cpp,v 1.2 2002/01/11 03:41:42 sconnet Exp clu $
+// Version          : $Id: misc.cpp,v 1.3 2015/03/14 23:44:56 clu Exp $
 //
 // Revision History :
 //
 // $Log: misc.cpp,v $
+// Revision 1.3  2015/03/14 23:44:56  clu
+// astyle code formatter applied
+//
 // Revision 1.2  2002/01/11 03:41:42  sconnet
 // *** empty log message ***
 //

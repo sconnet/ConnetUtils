@@ -5,7 +5,7 @@
 // Source File Name : Server.h
 // Author           : Steve Connet
 //
-// Version          : $Id: Server.h,v 1.3 2002/02/03 03:49:58 steve Exp clu $
+// Version          : $Id: Server.h,v 1.4 2015/03/14 23:44:56 clu Exp $
 //
 // File Overview    : Listens for incoming connections and calls a user's
 //                    callback so the user can read the data.
@@ -13,6 +13,9 @@
 // Revision History :
 //
 // $Log: Server.h,v $
+// Revision 1.4  2015/03/14 23:44:56  clu
+// astyle code formatter applied
+//
 // Revision 1.3  2002/02/03 03:49:58  steve
 // added static connect method
 //

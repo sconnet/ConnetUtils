@@ -5,11 +5,14 @@
 // Source File Name : Thread.cpp
 // Author           : Steve Connet
 //
-// Version          : $Id: Thread.cpp,v 1.4 2002/01/11 04:02:14 steve Exp clu $
+// Version          : $Id: Thread.cpp,v 1.5 2015/03/14 23:44:56 clu Exp $
 //
 // Revision History :
 //
 // $Log: Thread.cpp,v $
+// Revision 1.5  2015/03/14 23:44:56  clu
+// astyle code formatter applied
+//
 // Revision 1.4  2002/01/11 04:02:14  steve
 // made stop, start, and run lowercase
 //

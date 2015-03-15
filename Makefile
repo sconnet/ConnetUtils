@@ -5,11 +5,14 @@
 # Source File Name : makefile
 # Author           : Steve Connet
 #
-# Version          : $Id: Makefile,v 1.2 2002/01/11 03:50:21 steve Exp steve $
+# Version          : $Id: Makefile,v 1.3 2002/02/23 04:14:33 steve Exp $
 #
 # Revision History : makefile for the ConnetUtils library
 #
 # $Log: Makefile,v $
+# Revision 1.3  2002/02/23 04:14:33  steve
+# added Stopwatch.h
+#
 # Revision 1.2  2002/01/11 03:50:21  steve
 # *** empty log message ***
 #
