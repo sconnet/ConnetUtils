@@ -1,14 +1,6 @@
 //
-// Security Classification: UNCLASSIFIED
 //
 //*****************************************************************************
-//
-// Copyright (C) 2001 Spectrum Astro, Inc.  All rights reserved.
-//
-// Contractor       : Spectrum Astro, Inc.
-//                    1440 N. Fiesta Blvd
-//                    Gilbert, Arizona 85233
-//                    USA
 //
 // Source File Name : Stopwatch.h
 //
@@ -53,8 +45,3 @@ public:
 };
 
 #endif // __STOPWATCH_H_
-
-//*****************************************************************************
-//
-// Security Classification: UNCLASSIFIED
-//
